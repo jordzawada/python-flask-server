@@ -13,8 +13,8 @@ def home():
 @app.route('/<int:invoice_id>')
 def getInvoiceObj(invoice_id):
     name = create_invoice(invoice_id)["name"]
-    # return jsonify(create_invoice(invoice_id)), 200
-    return render_template('main.html', name=name)
+    return jsonify(create_invoice(invoice_id)), 200
+    # return render_template('main.html', name=name)
 
 app.run(port=5000)
 # SERVER SIDE CODE (pyhton)
