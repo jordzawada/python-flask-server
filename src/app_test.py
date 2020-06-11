@@ -1,12 +1,12 @@
 import pytest
 
 from flask import json
-import web
+import app
 
 @pytest.fixture
 def client():
-    web.app.config['TESTING'] = True
-    client = web.app.test_client()
+    app.app.config['TESTING'] = True
+    client = app.app.test_client()
 
     yield client
 

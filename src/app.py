@@ -1,20 +1,21 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, make_response
 from databaseLogic import create_invoice
+from flask_cors import CORS
 # do this in VS live share
 #harmonize excel sheets
 #4 sheets
 # DONE
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 @app.route('/')
 def home():
     return "hello"
 
-@app.route('/<int:invoice_id>')
+@app.route('/<int:invoice_id>', methods =['POST', 'GET'])
 def getInvoiceObj(invoice_id):
-    name = create_invoice(invoice_id)["name"]
-    return jsonify(create_invoice(invoice_id)), 200
-    # return render_template('main.html', name=name)
+    return create_invoice(invoice_id), 200
+   
 
 app.run(port=5000)
 # SERVER SIDE CODE (pyhton)
